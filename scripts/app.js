@@ -2,6 +2,7 @@
 let playerScores = [[],[]];
 let activePlayer;
 let winner;
+let selectedBox;
 let winningCombos = [
     [0,1,2],
     [3,4,5],
@@ -21,7 +22,7 @@ let newGameBtn = document.querySelector('.newgame__prompt');
 let gameboardBoxes = document.querySelectorAll('.gameboard__box');
 
 // EVENT LISTENER ON GAMEBOARD
-gameboard.addEventListener('click', updateUI);
+gameboard.addEventListener('click', playerTurn);
 
 // Game Init
 function init() {
@@ -29,41 +30,42 @@ function init() {
 }
 init();
 
-function updateUI(e) {
-    // let selectedBox = e.target.closest('.gameboard__box--content');
-    let selectedBox = e.target;
-    // console.log(selectedBox);
-    
+function playerTurn(e) {
+    selectedBox = e.target;
     // Check to see if the box has not been previously selected & that it is a valid gameboard box
     if(selectedBox.dataset = 'false' && selectedBox.classList.contains('gameboard__box')) {
-        // Check to see which player turn it is
-        if(activePlayer === 0) {
-            selectedBox.innerHTML = `
-                <div class="gameboard__x">&#215;</div>
-            `;
-        } else if (activePlayer === 1) {
-            selectedBox.innerHTML = `
-                <div class="gameboard__o"></div>
-            `;
-        }
-
+        // Update DOM with player turn ['x' or 'o']
+        updateUI();
         // Add the selected box to the activeplayer's turn array
         playerScores[activePlayer].push(parseInt(selectedBox.dataset.box));
-
         // Check to see if either player's score matches any subset of the winning combo array
         checkWinner();
-        
-
         // Change activeplayer
-        if(activePlayer === 0) {
-            activePlayer += 1;
-        } else {
-            activePlayer -= 1;
-        }
+        playerSwitch();
+        // Update gameboard box - change data attribute of each previously selected box to TRUE
+        selectedBox.dataset.select = 'true';
     }
+}
 
-    // Update gameboard box - change data attribute of each previously selected box to TRUE
-    selectedBox.dataset.select = 'true';
+function updateUI() {
+    // Check to see which player turn it is
+    if(activePlayer === 0) {
+        selectedBox.innerHTML = `
+            <div class="gameboard__x">&#215;</div>
+        `;
+    } else if (activePlayer === 1) {
+        selectedBox.innerHTML = `
+            <div class="gameboard__o"></div>
+        `;
+    }
+}
+
+function playerSwitch() {
+    if(activePlayer === 0) {
+        activePlayer += 1;
+    } else {
+        activePlayer -= 1;
+    }
 }
 
 function checkWinner() {
@@ -82,7 +84,7 @@ function checkWinner() {
             });
             // End the game
             winner = true;
-            endGame('Player 1 Wins!');       
+            endGame(1);       
 
         // Second, check to see if player 2's score includes any winning combos
         } else if(playerScores[1].includes(winningCombos[i][0]) && playerScores[1].includes(winningCombos[i][1]) && playerScores[1].includes(winningCombos[i][2])) {
@@ -96,10 +98,9 @@ function checkWinner() {
                     // console.log(winningBoxes);
                 }
             });
-
             // End the game
             winner = true;
-            endGame('Player 2 Wins!');
+            endGame(2);
 
         // Last, check to see if there is a tie
         } else if(playerScores[0].length + playerScores[1].length === 9 && !winner) {
@@ -111,9 +112,14 @@ function checkWinner() {
 
 function endGame(winner) {
     // Update title to show winner
-    title.textContent = `${winner}`;
+    if(winner === 1 || winner === 2) {
+        title.textContent = `Player ${winner} wins!`;
+    } else {
+        title.textContent = `${winner}`;
+    }
+    
     // Remove event listner from gameboard to stop further play
-    gameboard.removeEventListener('click', updateUI);
+    gameboard.removeEventListener('click', playerTurn);
     // Show the play again option
     newGame.style.display = 'block';
     // Event listener to reload game on play again btn
