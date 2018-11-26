@@ -6,31 +6,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
 
     <!-- Materalize CSS [Compiled and minified] -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">   -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+    <!-- <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"> -->
 
     <!-- Skeleton CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/style.css">
-    <title>Document</title>
+    <title>Tic-Tac-Toe | Kenny Choi</title>
 </head>
 <body>
+    <div class="container">
+
+        <div class="header">
+            <h1 class="main__header">Tic-Tac-Toe</h1>
+        </div>
+
+        <!-- <div class="scoreboard">
+            <div class="scoreboard__player scoreboard__p1">
+                <p class="scoreboard__header scoreboard__header--p1">Player 1</p>
+                <div class="scoreboard__score scoreboard__score--p1">0</div>
+            </div>
+            <div class="scoreboard__player scoreboard__p2">
+                <p class="scoreboard__header scoreboard__header--p2">Player 2</p>
+                <div class="scoreboard__score scoreboard__score--p2">0</div>
+            </div>
+        </div> -->
+
+        <div class="gameboard">
+            <div class="gameboard__box box0" data-select="false" data-box="0">
+                
+            </div>
+            <div class="gameboard__box box1" data-select="false" data-box="1">
+                
+            </div>
+            <div class="gameboard__box box2" data-select="false" data-box="2">
+
+            </div>
+            <div class="gameboard__box box3" data-select="false" data-box="3">
+                    <!-- <div class="gameboard__x">&#215;</div> -->
+            </div>
+            <div class="gameboard__box box4" data-select="false" data-box="4">
+                    <!-- <div class="gameboard__o"></div> -->
+            </div>
+            <div class="gameboard__box box5" data-select="false" data-box="5">
+            </div>
+            <div class="gameboard__box box6" data-select="false" data-box="6">
+            </div>
+            <div class="gameboard__box box7" data-select="false" data-box="7">
+            </div>
+            <div class="gameboard__box box8" data-select="false" data-box="8">
+            </div>
+        </div>
+
+        <div class="newgame">
+            <button class="newgame__prompt">Play again...</button>
+        </div>
+
+    </div>
     
 
 
 
 
     <!-- Materalize CSS [Compiled and minified JS] -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
     <!-- Bootstrap [Compiled and minified JS] -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
     
     <!-- Custom JS Script -->
     <script src="scripts/app.js"></script>
