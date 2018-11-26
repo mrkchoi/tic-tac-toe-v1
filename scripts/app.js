@@ -1,19 +1,7 @@
-// It should have a tic tac toe board
-// It should accept logic for (2) players
-// It should keep track of each player’s score
-// It should display each player’s move when clicking on a particular square
-// It should display the correct sign [‘o’ or ‘x’] depending on the player’s turn
-// It should stop the game when a player gets (3) in a row, and notify the user via UI elements the winning player
-
-
 // PLAYER VARIABLES
 let playerScores = [[],[]];
 let activePlayer;
 let winner;
-let title = document.querySelector('.main__header');
-let newGame = document.querySelector('.newgame');
-let newGameBtn = document.querySelector('.newgame__prompt');
-let gameboardBoxes = document.querySelectorAll('.gameboard__box');
 let winningCombos = [
     [0,1,2],
     [3,4,5],
@@ -27,7 +15,10 @@ let winningCombos = [
 
 // DOM ELEMENTS
 let gameboard = document.querySelector('.gameboard');
-
+let title = document.querySelector('.main__header');
+let newGame = document.querySelector('.newgame');
+let newGameBtn = document.querySelector('.newgame__prompt');
+let gameboardBoxes = document.querySelectorAll('.gameboard__box');
 
 // EVENT LISTENER ON GAMEBOARD
 gameboard.addEventListener('click', updateUI);
@@ -61,7 +52,6 @@ function updateUI(e) {
 
         // Check to see if either player's score matches any subset of the winning combo array
         checkWinner();
-        // If there is a match, the that player becomes the winner
         
 
         // Change activeplayer
@@ -72,7 +62,7 @@ function updateUI(e) {
         }
     }
 
-    // Update gameboard box to data select TRUE
+    // Update gameboard box - change data attribute of each previously selected box to TRUE
     selectedBox.dataset.select = 'true';
 }
 
@@ -80,21 +70,25 @@ function checkWinner() {
     let winners = [];
     // Loop through winning combinations and check to see if there is a match
     for(let i = 0; i < winningCombos.length; i++) {
+        // First, check to see if player 1's score includes any winning combos
         if(playerScores[0].includes(winningCombos[i][0]) && playerScores[0].includes(winningCombos[i][1]) && playerScores[0].includes(winningCombos[i][2])) {
+            // Save the winning combos in a separate array
             winners.push(...winningCombos[i]);
+            // Loop through each winning boxes and change color to red on game win
             gameboardBoxes.forEach((el, i) => {
                 if(el.dataset.box.includes(winners[0]) || el.dataset.box.includes(winners[1]) || el.dataset.box.includes(winners[2])) {
                     el.style.color = 'palevioletred';
                 }
             });
-            
-            
-            console.log(winners);
             // End the game
             winner = true;
-            endGame('Player 1 Wins!');
+            endGame('Player 1 Wins!');       
+
+        // Second, check to see if player 2's score includes any winning combos
         } else if(playerScores[1].includes(winningCombos[i][0]) && playerScores[1].includes(winningCombos[i][1]) && playerScores[1].includes(winningCombos[i][2])) {
+            // Save the winning combos in a separate array
             winners.push(...winningCombos[i]);
+            // Loop through each winning boxes and change color to red on game win
             gameboardBoxes.forEach((el, i) => {
                 if(el.dataset.box.includes(winners[0]) || el.dataset.box.includes(winners[1]) || el.dataset.box.includes(winners[2])) {
                     el.querySelector('.gameboard__o').style.border = '6px solid palevioletred';
@@ -106,6 +100,8 @@ function checkWinner() {
             // End the game
             winner = true;
             endGame('Player 2 Wins!');
+
+        // Last, check to see if there is a tie
         } else if(playerScores[0].length + playerScores[1].length === 9 && !winner) {
             // End the game
             endGame('Tie game!');
